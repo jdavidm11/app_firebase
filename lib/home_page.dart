@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba_firebase/authentication.dart';
-import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
+//import 'package:table_calendar/table_calendar.dart';
 
 import 'dynamic_event.dart';
 
 class HomePage extends StatelessWidget {
-  final int _index = 0;
+  //final int _index = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

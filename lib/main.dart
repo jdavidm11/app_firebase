@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:prueba_firebase/authentication.dart';
 import 'package:prueba_firebase/home_page.dart';
 import 'package:prueba_firebase/login.dart';
+import 'package:prueba_firebase/registrodeportista.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,11 +27,14 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Material App',
+        title: 'Appthlete',
         theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity),
         home: AuthenticationWrapper(),
+        routes: {
+          '/registro': (context) => RegistroDeportista(),
+        },
       ),
     );
   }

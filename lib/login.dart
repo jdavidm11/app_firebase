@@ -78,7 +78,7 @@ class SignInPage extends StatelessWidget {
                       child: TextButton(
                           child: Text("Registro Deportista"),
                           onPressed: () {
-                            return Text("sss");
+                            Navigator.pushNamed(context, '/registro');
                           }),
                     ),
                     /*Container(

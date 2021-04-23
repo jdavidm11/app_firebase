@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   firebase_core: "^0.7.0"
   firebase_auth: "^0.20.1"
+  image_picker: ^0.5.0+9
 
   provider:
   table_calendar: ^2.3.3
