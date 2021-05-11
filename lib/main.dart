@@ -6,6 +6,7 @@ import 'package:prueba_firebase/authentication.dart';
 import 'package:prueba_firebase/home_page.dart';
 import 'package:prueba_firebase/login.dart';
 import 'package:prueba_firebase/registrodeportista.dart';
+import 'package:prueba_firebase/home_page_admin.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Appthlete',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity),
@@ -45,6 +47,10 @@ class AuthenticationWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
     if (firebaseUser != null) {
+      if (firebaseUser.toString().contains("admin")) {
+        print(firebaseUser.toString());
+        return AdminHomepage();
+      }
       return HomePage();
     }
     return SignInPage();

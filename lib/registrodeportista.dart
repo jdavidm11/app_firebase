@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'imagepicker.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba_firebase/authentication.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegistroDeportista extends StatefulWidget {
   @override
@@ -10,9 +11,30 @@ class RegistroDeportista extends StatefulWidget {
 }
 
 class _RegistroDeportistaState extends State<RegistroDeportista> {
-  File imageFile;
   final TextEditingController emailController = TextEditingController();
+  final firebaseInstance = FirebaseFirestore.instance;
+  final TextEditingController genreController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  File imageFile;
+
+  void registro(BuildContext context) {
+    Navigator.pop(context);
+    print("Registro");
+    context.read<Auth>().createAccount(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+  }
+
+  void addUser() {
+    firebaseInstance.collection("Usuarios").add({
+      "Nombre": nameController.text.trim(),
+      "Apellido": surnameController.text.trim(),
+      "Sexo": genreController.text.trim(),
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +70,7 @@ class _RegistroDeportistaState extends State<RegistroDeportista> {
                       child: TextField(
                         decoration: InputDecoration(
                             labelText: "Nombres", border: OutlineInputBorder()),
+                        controller: nameController,
                       ),
                     ),
                   ),
@@ -60,10 +83,10 @@ class _RegistroDeportistaState extends State<RegistroDeportista> {
                       width: 250,
                       height: 40,
                       child: TextField(
-                        decoration: InputDecoration(
-                            labelText: "Apellidos",
-                            border: OutlineInputBorder()),
-                      ),
+                          decoration: InputDecoration(
+                              labelText: "Apellidos",
+                              border: OutlineInputBorder()),
+                          controller: surnameController),
                     ),
                   ),
                   SizedBox(
@@ -90,8 +113,9 @@ class _RegistroDeportistaState extends State<RegistroDeportista> {
                           height: 40,
                           child: TextField(
                               decoration: InputDecoration(
-                                  labelText: "Confirmar E-mail",
-                                  border: OutlineInputBorder())))),
+                                  labelText: "Genero",
+                                  border: OutlineInputBorder()),
+                              controller: genreController))),
                   SizedBox(
                     height: 5,
                   ),
@@ -128,6 +152,7 @@ class _RegistroDeportistaState extends State<RegistroDeportista> {
                     child: ElevatedButton(
                       child: Text("Registrarse"),
                       onPressed: () {
+                        addUser();
                         registro(context);
                       },
                     ),
@@ -139,14 +164,5 @@ class _RegistroDeportistaState extends State<RegistroDeportista> {
         ),
       ),
     );
-  }
-
-  void registro(BuildContext context) {
-    Navigator.pop(context);
-    print("Registro");
-    context.read<Auth>().createAccount(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        );
   }
 }

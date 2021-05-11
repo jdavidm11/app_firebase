@@ -56,6 +56,7 @@ class SignInPage extends StatelessWidget {
                               labelText: "CONTRASEÑA",
                               border: OutlineInputBorder()),
                           controller: passwordController,
+                          obscureText: true,
                         ),
                       ),
                     ),
