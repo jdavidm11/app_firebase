@@ -58,7 +58,7 @@ class _AdminHomepageState extends State<AdminHomepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bienvenido, "),
+        title: Text("Bienvenido, Admin"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.close),
