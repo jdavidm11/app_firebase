@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:prueba_firebase/actividades_list.dart';
 import 'package:prueba_firebase/authentication.dart';
+import 'package:prueba_firebase/dynamic_event.dart';
 import 'package:prueba_firebase/home_page.dart';
 import 'package:prueba_firebase/login.dart';
 import 'package:prueba_firebase/registrodeportista.dart';
 import 'package:prueba_firebase/home_page_admin.dart';
+
+import 'apuntarseActividad.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +40,9 @@ class MyApp extends StatelessWidget {
         home: AuthenticationWrapper(),
         routes: {
           '/registro': (context) => RegistroDeportista(),
+          '/calendario': (context) => DynamicEvent(),
+          '/actividadesview': (context) => Actividadeslist(),
+          '/apuntarse': (context) => Apuntarse(),
         },
       ),
     );

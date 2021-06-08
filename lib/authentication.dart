@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Auth {
   final FirebaseAuth firebaseAuth;
@@ -13,6 +15,13 @@ class Auth {
           email: email, password: password);
       return "Signed in";
     } on FirebaseAuthException catch (e) {
+      SnackBar(
+        content: Text('Usuario y/o contraseña incorrecta'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {},
+        ),
+      );
       return e.message;
     }
   }

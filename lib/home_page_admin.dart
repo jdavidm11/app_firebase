@@ -19,7 +19,7 @@ class _AdminHomepageState extends State<AdminHomepage> {
   final TextEditingController dispController = TextEditingController();
 
   void addActividad() {
-    firebaseInstance.collection("Actividades").add({
+    firebaseInstance.collection("acts").add({
       "Nombre": nameController.text.trim(),
       "Fecha": dateController.text.trim(),
       "Cupo": dispController.text.trim(),
@@ -157,8 +157,7 @@ class _ListaActividadesState extends State<ListaActividades> {
             borderRadius: BorderRadius.circular(20),
             color: Colors.blueAccent.withOpacity(0.2)),
         child: StreamBuilder(
-          stream:
-              FirebaseFirestore.instance.collection('Actividades').snapshots(),
+          stream: FirebaseFirestore.instance.collection('acts').snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
@@ -176,7 +175,8 @@ class _ListaActividadesState extends State<ListaActividades> {
                     child: Text("Actividad: " +
                         document['Nombre'] +
                         "  Cupo: " +
-                        document['Cupo'].toString()),
+                        document['Cupo'].toString() +
+                        document['Fecha'].toString()),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.lightBlue.shade50.withOpacity(0.4)),
